@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="author" content="Omid K. Rad <omidkrad@sbcglobal.net>"/>
+	<title>Javascript Console</title>
+	<script type="text/javascript" src="IntlDateDemo.js"></script>
+	<script type="text/javascript" src="IntlDate.js"></script>
+	<script type="text/javascript" src="Calendars/PersianDate.js"></script>
+	<script type="text/javascript">
+		function runCode(debug) {
+			var str = input.value;
+			try {
+				if (debug)
+					str = "debugger;\r\n" + str;
+				str = eval(str).toString();
+				output.style.color = "green";
+			}
+			catch(ex) {
+				if (str.length > 0) {
+					str = ex.name + "(" + (ex.number & 0xFFFF) + "): " + ex.message;
+					output.style.color = "maroon";
+				}
+			}
+			output.value = str;
+		}
+	</script>
+	<style type="text/css">
+		div {
+			font-family: Verdana;
+			font-size: 10pt;
+		}
+		div.Title {
+			font-size: 12pt;
+		}
+		.Code {
+			font-family: Courier New, Verdana;
+			font-size: 10pt;
+		}
+		.OutputCode {
+			font-family: Arial Unicode MS, Courier New, Verdana;
+			font-size: 12pt;
+		}
+		.Author {
+			font-size: 9px;
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<div style="width:620px;">
+		<div class="Title"><b>Javascript Console</b></div><br />
+		<div>Enter a Javascript expression that evaluates to a string in the textbox below and press Run.</div><br />
+		<textarea class="Code" id="input" cols="65" rows="8" onkeyup="if (runAsTyped.checked) runCode(false);"></textarea>
+		<input type="button" id="runButton" value="Run" onclick="runCode(enableDebugger.checked)" /><br />
+		<input type="checkbox" id="runAsTyped" checked="checked" onclick="output.value = ''" />Run as you type
+		&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="enableDebugger" />Enable debugger<br />
+		<br />
+		<div>Output:</div><br />
+		<textarea class="Code" id="output" cols="65" rows="15"></textarea>
+		<br />
+		<div class="Author">By <a href="http://www.codeplex.com/site/users/view/omidkrad">Omid K. Rad</a></div>
+	</div>	
+</body>
+</html>
